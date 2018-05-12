@@ -1,0 +1,13 @@
+tr {
+    text-align: center;
+}
+
+button {
+    margin: 0px;
+}
+
+.highlightedColumn {
+    color: black;
+    background-color: white;
+    border: none;
+}

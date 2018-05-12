@@ -1,0 +1,29 @@
+<div class="jumbotron">
+  <h3>Servers</h3>
+  <p>Here you can review available servers.</p>
+</div>
+
+<table class="table table-dark">
+    <thead>
+        <tr class="d-flex">
+            <th class="col-1">Id</th>
+            <th class="col-5">Server name</th>
+            <th class="col-3 highlightedColumn">Status</th>
+            <th class="col-3">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+      <app-server [serverName]="server.serverName" [serverId]="i + 1" *ngFor="let server of servers; let i = index" (deleteServer)="onServerDeletion($event)"></app-server>
+    </tbody>
+</table>
+
+<div class="alert alert-danger" role="alert" *ngIf="warningMessage != null">
+    {{warningMessage}}
+</div>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Type server name..." aria-describedby="basic-addon1" [(ngModel)]="typedServerName">
+  <div class="input-group-prepend">
+      <button class="btn-sm btn-primary" [disabled]="!allowNewServer" (click)="onServerCreation()">Add server</button>
+  </div>
+</div>
+

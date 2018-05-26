@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Server } from '../model/server.model';
 
 @Component({
   selector: 'app-server',
@@ -7,9 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ServerComponent implements OnInit {
 
-  status: boolean = Math.random() > 0.5;
   @Input() serverId: Number;
-  @Input() serverName: string;
+  @Input() server: Server;
   @Output() deleteServer = new EventEmitter<string>();
 
   constructor() {}
@@ -17,12 +17,12 @@ export class ServerComponent implements OnInit {
   ngOnInit() {
   }
 
-  getServerStatus() {
-    return this.status;
-  }
-
   onServerDeletion(serverName: string) {
     this.deleteServer.next(serverName);
+  }
+
+  getServerStatusColor(): string {
+    return this.server.status === 'Warning' ? 'red' : 'green';
   }
 
 }

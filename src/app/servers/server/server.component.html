@@ -1,15 +1,19 @@
 <tr class="d-flex">
   <td class="col-1">
-      {{serverId}}
+      {{ serverId}}
   </td>
   <td class="col-5">
-    {{ serverName }} 
+    {{ server.serverName }} 
   </td>
   <td class="col-3 highlightedColumn">
-    <span *ngIf="getServerStatus(); else elseBlock"><app-warning-alert></app-warning-alert></span>
-    <ng-template #elseBlock><app-working-alert></app-working-alert></ng-template>
+    <span *ngIf="server.status == 'Warning'; else elseBlock">
+      <span [ngStyle]="{color: getServerStatusColor()}">{{server.status}}</span>
+    </span>
+    <ng-template #elseBlock>
+      <span [ngStyle]="{color: getServerStatusColor()}">{{server.status}}</span>
+    </ng-template>
   </td>
   <td class="col-3">
-    <button class="btn btn-danger btn-sm" value="delete" (click)="onServerDeletion(serverName)">Delete</button>
+    <button class="btn btn-danger btn-sm" value="delete" (click)="onServerDeletion(server.serverName)">Delete</button>
   </td>
 </tr>

@@ -9,9 +9,12 @@ import { Server } from './model/server.model';
 export class ServersComponent implements OnInit {
 
   servers: Array<Server> = new Array();
-  typedServerName = '';
-  allowNewServer = false;
-  warningMessage: string;
+  typedServerName: string;
+  savedServerName: string;
+  allowNewServer: boolean;
+  serverCreated: boolean;
+  serverRemoved: boolean;
+  nothingTyped: boolean;
 
   @Input() deleteServer: number;
 
@@ -19,6 +22,10 @@ export class ServersComponent implements OnInit {
     this.servers.push(new Server('Valhalla'));
     this.servers.push(new Server('Burning'));
     this.servers.push(new Server('Frosthome'));
+
+    this.servers.forEach((server: Server) => {
+      server.status = this.randomStatus();
+    });
 
     setTimeout(() => {
       this.allowNewServer = true;
@@ -29,12 +36,16 @@ export class ServersComponent implements OnInit {
   }
 
   onServerCreation() {
-    if (this.typedServerName.length !== 0) {
-      this.servers.push(new Server(this.typedServerName));
-      this.typedServerName = '';
-      this.warningMessage = null;
+    if (this.typedServerName !== undefined && this.typedServerName.length !== 0) {
+      this.servers.push(new Server(this.typedServerName, this.randomStatus()));
+      this.serverCreated = true;
+      this.savedServerName = this.typedServerName;
+      this.nothingTyped = false;
+      this.serverRemoved = false;
     } else {
-      this.warningMessage = 'Incorrect server name. Please fill server name below.';
+      this.serverCreated = false;
+      this.serverRemoved = false;
+      this.nothingTyped = true;
     }
   }
 
@@ -43,8 +54,16 @@ export class ServersComponent implements OnInit {
       .filter((server: Server) => server.serverName === serverName)
       .map((serverToDelete: Server) => {
         const index: number = this.servers.indexOf(serverToDelete);
+        this.serverRemoved = true;
+        this.savedServerName = serverName;
+        this.serverCreated = false;
+        this.nothingTyped = false;
         this.servers.splice(index, 1);
       });
+  }
+
+  randomStatus(): string {
+    return Math.random() > 0.5 ? 'Working' : 'Warning';
   }
 
 }

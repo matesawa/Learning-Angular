@@ -10,6 +10,8 @@ import { WarningAlertComponent } from './servers/server/warning-alert/warning-al
 import { WorkingAlertComponent } from './servers/server/working-alert/working-alert.component';
 import { CursiveDirective } from './servers/server/cursive.directive';
 import { ServerColorDirective } from './servers/server/serverColor.directive';
+import { ListComponent } from './list/list.component';
+import { CustomDropdownDirective } from './list/customDropdown.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ServerColorDirective } from './servers/server/serverColor.directive';
     WarningAlertComponent,
     WorkingAlertComponent,
     CursiveDirective,
-    ServerColorDirective
+    ServerColorDirective,
+    ListComponent,
+    CustomDropdownDirective
   ],
   imports: [
     BrowserModule,

@@ -6,16 +6,18 @@
         <li class="list-inline-item"><h5><span class="badge badge-secondary">nav</span></h5></li>
         <li class="list-inline-item"><a href="#" (click)="changeNav(1)" class="badge badge-light">Link1</a></li>
         <li class="list-inline-item"><a href="#" (click)="changeNav(2)" class="badge badge-light">Link2</a></li>
-        <li class="list-inline-item"><a href="#" class="badge badge-light">Link3</a></li>
-        <li class="list-inline-item"><a href="#" class="badge badge-light">Link4</a></li>
-        <li class="list-inline-item"><a href="#" class="badge badge-light">Link5</a></li>
+        <li class="list-inline-item"><a href="#" (click)="changeNav(3)" class="badge badge-light">Link3</a></li>
+        <li class="list-inline-item"><a href="#" (click)="changeNav(4)" class="badge badge-light">Link4</a></li>
+        <li class="list-inline-item"><a href="#" (click)="changeNav(5)" class="badge badge-light">Link5</a></li>
       </ul>
 </div>
 
-<div class="container" *ngIf="currentTab == 1">
-  <app-servers></app-servers>
+<div [ngSwitch]="currentTab" class="container">
+  <app-servers *ngSwitchCase="1"></app-servers>
+  <app-list *ngSwitchCase="2"></app-list>
+  <h2 *ngSwitchCase="3">Tab3</h2>
 </div>
 
-<div class="container" *ngIf="currentTab == 2">
-  <h2>Tab2</h2>
-</div>
+<nav class="navbar fixed-bottom navbar-light bg-faded container">
+  <a class="navbar-brand footer-text" href="#">Angular 6 - The Complete Guide | Copyright 2018</a>
+</nav>

@@ -6,8 +6,6 @@ button {
     margin: 0px;
 }
 
-.highlightedColumn {
-    color: black;
-    background-color: white;
+.borderless {
     border: none;
 }

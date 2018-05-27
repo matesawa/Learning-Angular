@@ -8,6 +8,8 @@ import { ServerComponent } from './servers/server/server.component';
 import { ServersComponent } from './servers/servers.component';
 import { WarningAlertComponent } from './servers/server/warning-alert/warning-alert.component';
 import { WorkingAlertComponent } from './servers/server/working-alert/working-alert.component';
+import { CursiveDirective } from './servers/server/cursive.directive';
+import { ServerColorDirective } from './servers/server/serverColor.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { WorkingAlertComponent } from './servers/server/working-alert/working-al
     ServerComponent,
     ServersComponent,
     WarningAlertComponent,
-    WorkingAlertComponent
+    WorkingAlertComponent,
+    CursiveDirective,
+    ServerColorDirective
   ],
   imports: [
     BrowserModule,

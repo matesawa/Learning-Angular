@@ -27,9 +27,9 @@
     Server with name <strong>{{ savedServerName }} </strong> has been <strong> <i>removed</i> </strong>!
 </div>
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Type server name..." aria-describedby="basic-addon1" [(ngModel)]="typedServerName">
+  <input type="text" class="form-control" placeholder="Type server name..." aria-describedby="basic-addon1" #serverNameInput>
   <div class="input-group-prepend">
-      <button class="btn-sm btn-primary" [disabled]="!allowNewServer" (click)="onServerCreation()">Add server</button>
+      <button class="btn-sm btn-primary" (click)="onServerCreation(serverNameInput)">Add server</button>
   </div>
 </div>
 

@@ -5,13 +5,11 @@
   <td class="col-5">
     {{ server.serverName }} 
   </td>
-  <td class="col-3 highlightedColumn">
-    <span *ngIf="server.status == 'Warning'; else elseBlock">
-      <span [ngStyle]="{color: getServerStatusColor()}">{{server.status}}</span>
-    </span>
-    <ng-template #elseBlock>
-      <span [ngStyle]="{color: getServerStatusColor()}">{{server.status}}</span>
-    </ng-template>
+  <td class="col-3 borderless" 
+      appBold appCursive
+      [textColor]="getServerStatusColor()" 
+      [backgroundCol]="getServerStatusColor()">
+    {{server.status}}
   </td>
   <td class="col-3">
     <button class="btn btn-danger btn-sm" value="delete" (click)="onServerDeletion(server.serverName)">Delete</button>

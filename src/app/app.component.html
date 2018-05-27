@@ -4,14 +4,18 @@
 <div class="container">
       <ul class="list-inline">
         <li class="list-inline-item"><h5><span class="badge badge-secondary">nav</span></h5></li>
-        <li class="list-inline-item"><a href="#" class="badge badge-light">Link1</a></li>
-        <li class="list-inline-item"><a href="#" class="badge badge-light">Link2</a></li>
+        <li class="list-inline-item"><a href="#" (click)="changeNav(1)" class="badge badge-light">Link1</a></li>
+        <li class="list-inline-item"><a href="#" (click)="changeNav(2)" class="badge badge-light">Link2</a></li>
         <li class="list-inline-item"><a href="#" class="badge badge-light">Link3</a></li>
         <li class="list-inline-item"><a href="#" class="badge badge-light">Link4</a></li>
         <li class="list-inline-item"><a href="#" class="badge badge-light">Link5</a></li>
       </ul>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="currentTab == 1">
   <app-servers></app-servers>
+</div>
+
+<div class="container" *ngIf="currentTab == 2">
+  <h2>Tab2</h2>
 </div>

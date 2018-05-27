@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit, Output, Input, ViewChild, ElementRef } from '@angular/core';
 import { Server } from './model/server.model';
 
 @Component({
@@ -9,13 +9,12 @@ import { Server } from './model/server.model';
 export class ServersComponent implements OnInit {
 
   servers: Array<Server> = new Array();
-  typedServerName: string;
   savedServerName: string;
-  allowNewServer: boolean;
   serverCreated: boolean;
   serverRemoved: boolean;
   nothingTyped: boolean;
 
+  @ViewChild('serverNameInput') serverNameInput2: ElementRef;
   @Input() deleteServer: number;
 
   constructor() {
@@ -26,20 +25,17 @@ export class ServersComponent implements OnInit {
     this.servers.forEach((server: Server) => {
       server.status = this.randomStatus();
     });
-
-    setTimeout(() => {
-      this.allowNewServer = true;
-    }, 2000);
   }
 
   ngOnInit() {
   }
 
-  onServerCreation() {
-    if (this.typedServerName !== undefined && this.typedServerName.length !== 0) {
-      this.servers.push(new Server(this.typedServerName, this.randomStatus()));
+  onServerCreation(serverName: HTMLInputElement) {
+    console.log(this.serverNameInput2);
+    if (serverName.value !== undefined && serverName.value.length !== 0) {
+      this.servers.push(new Server(serverName.value, this.randomStatus()));
       this.serverCreated = true;
-      this.savedServerName = this.typedServerName;
+      this.savedServerName = serverName.value;
       this.nothingTyped = false;
       this.serverRemoved = false;
     } else {

@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
+  picture: string;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  showPicture(pictureNumber: number) {
+    return pictureNumber === 1 ? this.picture = '1.jpg' : this.picture = '2.jpg';
   }
 
 }
